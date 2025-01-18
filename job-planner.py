@@ -87,7 +87,19 @@ def init_db():
     conn.close()
 
 # FastAPI App
-app = FastAPI(title="Job Search Planner")
+@app.get("/")
+async def root():
+    return {
+        "message": "Welcome to the Job Planner API! Use the following endpoints:",
+        "endpoints": {
+            "/applications/": "Manage job applications",
+            "/tasks/": "Create and manage tasks",
+            "/contacts/": "Manage professional contacts",
+            "/documents/": "Store and retrieve documents",
+            "/analytics/application-status": "View application stats"
+        }
+    }
+
 
 # Job Applications endpoints
 @app.post("/applications/", response_model=JobApplication)
