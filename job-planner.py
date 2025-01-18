@@ -87,6 +87,9 @@ def init_db():
     conn.close()
 
 # FastAPI App
+app = FastAPI(title="Job Search Planner")
+
+# Add the root endpoint
 @app.get("/")
 async def root():
     return {
@@ -99,7 +102,6 @@ async def root():
             "/analytics/application-status": "View application stats"
         }
     }
-
 
 # Job Applications endpoints
 @app.post("/applications/", response_model=JobApplication)
